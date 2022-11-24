@@ -1,0 +1,5 @@
+C:\Users\goryn\source\repos\TradingCompany\DTO\bin\Debug\DTO.dll
+C:\Users\goryn\source\repos\TradingCompany\DTO\bin\Debug\DTO.pdb
+C:\Users\goryn\source\repos\TradingCompany\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\goryn\source\repos\TradingCompany\DTO\obj\Debug\DTO.dll
+C:\Users\goryn\source\repos\TradingCompany\DTO\obj\Debug\DTO.pdb
