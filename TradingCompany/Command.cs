@@ -16,36 +16,24 @@ namespace TradingCompany
                 );
             return config.CreateMapper();
         }
-        internal void CreateNewUser(string firstName, string lastName, string login, string password, string keyword, string gender, string address, string email, string phonenumber, string bankcard)
+        internal void CreateNewUser(string firstName, string lastName, string login, string password, string keyword, bool gender, string address, string email, string phonenumber, string bankcard)
         {
             var dal = new UserDal(Mapper);
-            var user = new UserDTO
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                Login=login,
-                Password=password,
-                Keyword=keyword,
-                Gender=gender,
-                Address=address,
-                Email=email,
-                PhoneNumber=phonenumber,
-                BankCard=bankcard
-            };
-            user = dal.CreateUser(user);
-            Console.WriteLine($"New user ID = : {user.UserID}");
+           
+            dal.CreateUser( firstName, lastName,  login, password,  keyword, gender, address,  email,  phonenumber, bankcard);
+            //Console.WriteLine($"New user ID = : {user.UserID}");
         }
         public void ReadAllUsers()
         {
             var dal = new UserDal(Mapper);
             var users = dal.GetAllUsers();
-            Console.WriteLine($"UserID FirstName     LastName\t Gender \t\tAddress \t\t\t\t\tEmail" + $"                     PhoneNumber      BankCard           RowInsertTime         RowUpdateTime");
+            Console.WriteLine($"UserID FirstName     LastName\t IsFemale \t\tAddress \t\t\t\t\tEmail" + $"                     PhoneNumber      BankCard           RowInsertTime         RowUpdateTime");
             foreach (var user in users)
             {
                 Console.WriteLine(user.ToString());
             }
         }
-        internal void UpdateUser(int id,string firstName, string lastName, string login, string password, string keyword, string gender, string address, string email, string phonenumber, string bankcard)
+        internal void UpdateUser(int id,string firstName, string lastName, string login, byte[] password, string keyword, bool gender, string address, string email, string phonenumber, string bankcard)
         {
             var dal = new UserDal(Mapper);
             var user = new UserDTO
@@ -53,9 +41,9 @@ namespace TradingCompany
                 FirstName = firstName,
                 LastName = lastName,
                 Login = login,
-                Password = password,
+                Passsword = password,
                 Keyword = keyword,
-                Gender = gender,
+                IsFemale = gender,
                 Address = address,
                 Email = email,
                 PhoneNumber = phonenumber,

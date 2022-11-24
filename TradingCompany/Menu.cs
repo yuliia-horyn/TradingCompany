@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace TradingCompany
 {
@@ -211,7 +212,7 @@ q - Exit";
             Console.WriteLine("Enter keyword for user : ");
             string keyword = Console.ReadLine();
             Console.WriteLine("Enter gender of user : ");
-            string gender = Console.ReadLine();
+            bool gender = Convert.ToBoolean(Console.ReadLine());
             Console.WriteLine("Enter address of user : ");
             string address = Console.ReadLine();
             Console.WriteLine("Enter email of user : ");
@@ -234,11 +235,11 @@ q - Exit";
             Console.WriteLine("Enter login for user : ");
             string login = Console.ReadLine();
             Console.WriteLine("Enter password user : ");
-            string password = Console.ReadLine();
+            byte[] password = Encoding.ASCII.GetBytes(Console.ReadLine());
             Console.WriteLine("Enter keyword for user : ");
             string keyword = Console.ReadLine();
             Console.WriteLine("Enter gender of user : ");
-            string gender = Console.ReadLine();
+            bool gender = Convert.ToBoolean(Console.ReadLine());
             Console.WriteLine("Enter address of user : ");
             string address = Console.ReadLine();
             Console.WriteLine("Enter email of user : ");
