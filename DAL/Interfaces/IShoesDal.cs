@@ -9,5 +9,6 @@ namespace DAL.Interfaces
         ShoesDTO CreateShoes(ShoesDTO shoes);
         ShoesDTO UpdateShoesByID(ShoesDTO shoes, int id);
         ShoesDTO DeleteShoesByID(int id);
+        ShoesDTO GetShoesByID(int id);
     }
 }

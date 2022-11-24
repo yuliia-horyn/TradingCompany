@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="shoefactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShoeID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="OrderDate" Type="date" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="RowInsertTime" Type="datetime" Nullable="false" />
+    <Property Name="RowUpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shoess">
+    <Key>
+      <PropertyRef Name="ShoeID" />
+    </Key>
+    <Property Name="ShoeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShoeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Size" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="RowInsertTime" Type="datetime" Nullable="false" />
+    <Property Name="RowUpdateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Keyword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BankCard" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RowInsertTime" Type="datetime" Nullable="false" />
+    <Property Name="RowUpdateTime" Type="datetime" Nullable="false" />
+    <Property Name="Salt" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsFemale" Type="bit" Nullable="false" />
+    <Property Name="Password" Type="binary" MaxLength="64" Nullable="false" />
+    <Property Name="Passsword" Type="binary" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Order_Shoe">
+    <End Role="Shoess" Type="Self.Shoess" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shoess">
+        <PropertyRef Name="ShoeID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ShoeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="shoefactoryModelStoreContainer">
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shoess" EntityType="Self.Shoess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Order_Shoe" Association="Self.FK_Order_Shoe">
+      <End Role="Shoess" EntitySet="Shoess" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

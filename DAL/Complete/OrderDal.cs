@@ -19,6 +19,7 @@ namespace DAL.Complete
             using (var entites = new shoefactoryEntities())
             {
                 var orderInDB = _mapper.Map<Order>(order);
+                orderInDB.OrderDate = System.DateTime.Now;
                 orderInDB.RowInsertTime = System.DateTime.Now;
                 orderInDB.RowUpdateTime = System.DateTime.Now;
                 entites.Orders.Add(orderInDB);
@@ -26,7 +27,15 @@ namespace DAL.Complete
                 return _mapper.Map<OrderDTO>(orderInDB);
             }
         }
-
+        public OrderDTO GetOrderByID(int id)
+        {
+            using (var entities = new shoefactoryEntities())
+            {
+                var orderID = entities.Orders.Select(x => x.OrderID).ToList();
+                var order = entities.Orders.Where(x => orderID.Contains(id)).ToList();
+                return _mapper.Map<OrderDTO>(order[id-1]);
+            }
+        }
         public List<OrderDTO> GetAllOrders()
         {
             using (var entities = new shoefactoryEntities())
@@ -66,6 +75,14 @@ namespace DAL.Complete
                     entites.SaveChanges();
                 }
                 return _mapper.Map<OrderDTO>(orderInDB);
+            }
+        }
+        public List<OrderDTO> GetUserOrders(int userID)
+        {
+            using (var entities = new shoefactoryEntities())
+            {
+                var orders = entities.Orders.Where(u => u.UserID == userID).ToList();
+                return _mapper.Map<List<OrderDTO>>(orders);
             }
         }
     }

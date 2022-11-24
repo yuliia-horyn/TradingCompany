@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="shoefactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="shoefactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -38,15 +38,17 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Keyword" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="BankCard" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="RowInsertTime" Type="datetime" Nullable="false" />
           <Property Name="RowUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="Salt" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsFemale" Type="bit" Nullable="false" />
+          <Property Name="Password" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="Passsword" Type="binary" MaxLength="64" Nullable="false" />
         </EntityType>
         <Association Name="FK_Order_Shoe">
           <End Role="Shoess" Type="Self.Shoess" Multiplicity="1" />
@@ -85,8 +87,7 @@
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shoefactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,9 +127,7 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Keyword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
@@ -136,6 +135,9 @@
           <Property Name="RowInsertTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RowUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_User" FromRole="Users" ToRole="Orders" />
+          <Property Name="Salt" Type="Guid" Nullable="false" />
+          <Property Name="IsFemale" Type="Boolean" Nullable="false" />
+          <Property Name="Passsword" Type="Binary" Nullable="false" MaxLength="64" FixedLength="true" />
         </EntityType>
         <Association Name="FK_Order_Shoe">
           <End Role="Shoess" Type="Self.Shoess" Multiplicity="1" />
@@ -210,13 +212,15 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="shoefactoryModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Passsword" ColumnName="Password" />
+                <ScalarProperty Name="Passsword" ColumnName="Passsword" />
+                <ScalarProperty Name="IsFemale" ColumnName="IsFemale" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Keyword" ColumnName="Keyword" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />

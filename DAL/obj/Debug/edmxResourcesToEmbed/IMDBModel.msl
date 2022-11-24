@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shoefactoryModelStoreContainer" CdmEntityContainer="shoefactoryEntities">
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="shoefactoryModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ShoeID" ColumnName="ShoeID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="RowInsertTime" ColumnName="RowInsertTime" />
+          <ScalarProperty Name="RowUpdateTime" ColumnName="RowUpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shoesses">
+      <EntityTypeMapping TypeName="shoefactoryModel.Shoess">
+        <MappingFragment StoreEntitySet="Shoess">
+          <ScalarProperty Name="ShoeID" ColumnName="ShoeID" />
+          <ScalarProperty Name="ShoeName" ColumnName="ShoeName" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="RowInsertTime" ColumnName="RowInsertTime" />
+          <ScalarProperty Name="RowUpdateTime" ColumnName="RowUpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="shoefactoryModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Passsword" ColumnName="Password" />
+          <ScalarProperty Name="Passsword" ColumnName="Passsword" />
+          <ScalarProperty Name="IsFemale" ColumnName="IsFemale" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="BankCard" ColumnName="BankCard" />
+          <ScalarProperty Name="RowInsertTime" ColumnName="RowInsertTime" />
+          <ScalarProperty Name="RowUpdateTime" ColumnName="RowUpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

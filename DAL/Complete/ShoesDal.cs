@@ -26,7 +26,15 @@ namespace DAL.Complete
                 return _mapper.Map<ShoesDTO>(shoesInDB);
             }
         }
-
+        public ShoesDTO GetShoesByID(int id)
+        {
+            using (var entities = new shoefactoryEntities())
+            {
+                var shoesID = entities.Shoesses.Select(x => x.ShoeID).ToList();
+                var shoes = entities.Shoesses.Where(x => shoesID.Contains(id)).ToList();
+                return _mapper.Map<ShoesDTO>(shoes[id-1]);
+            }
+        }
         public List<ShoesDTO> GetAllShoes()
         {
             using (var entities = new shoefactoryEntities())

@@ -9,5 +9,6 @@ namespace DAL.Interfaces
         OrderDTO CreateOrder(OrderDTO order);
         OrderDTO UpdateOrderByID(OrderDTO order, int id);
         OrderDTO DeleteOrderByID(int id);
+        List<OrderDTO> GetUserOrders(int userID);
     }
 }
